@@ -47,12 +47,22 @@ struct SimpleEntry: TimelineEntry {
 
 struct ConvoStarterWidgetEntryView : View {
     var entry: Provider.Entry
+    @Environment(\.widgetFamily) var family
 
     var body: some View {
-        Text(entry.conversationText)
-            .font(.body)
-            .multilineTextAlignment(.leading)
-            .lineLimit(nil)
+        switch family {
+        case .accessoryRectangular:
+            Text(entry.conversationText)
+                .font(.caption2)
+                .lineLimit(nil)
+                .multilineTextAlignment(.leading)
+        default:
+            // Home screen widgets
+            Text(entry.conversationText)
+                .font(.body)
+                .multilineTextAlignment(.leading)
+                .lineLimit(nil)
+        }
     }
 }
 
@@ -66,16 +76,23 @@ struct ConvoStarterWidget: Widget {
                     .containerBackground(.fill.tertiary, for: .widget)
             } else {
                 ConvoStarterWidgetEntryView(entry: entry)
-                    .padding()
                     .background()
             }
         }
         .configurationDisplayName("Conversation Starter")
         .description("Get the latest conversation starter to break the ice.")
+        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge, .accessoryRectangular])
     }
 }
 
 #Preview(as: .systemSmall) {
+    ConvoStarterWidget()
+} timeline: {
+    SimpleEntry(date: .now, conversationText: "What's the most interesting thing you've learned recently?")
+    SimpleEntry(date: .now, conversationText: "If you could have dinner with anyone, living or dead, who would it be and why?")
+}
+
+#Preview(as: .accessoryRectangular) {
     ConvoStarterWidget()
 } timeline: {
     SimpleEntry(date: .now, conversationText: "What's the most interesting thing you've learned recently?")
