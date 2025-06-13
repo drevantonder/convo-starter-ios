@@ -49,17 +49,10 @@ struct ConvoStarterWidgetEntryView : View {
     var entry: Provider.Entry
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("Conversation Starter")
-                .font(.caption)
-                .foregroundColor(.secondary)
-            
-            Text(entry.conversationText)
-                .font(.body)
-                .multilineTextAlignment(.leading)
-                .lineLimit(nil)
-        }
-        .padding()
+        Text(entry.conversationText)
+            .font(.body)
+            .multilineTextAlignment(.leading)
+            .lineLimit(nil)
     }
 }
 
