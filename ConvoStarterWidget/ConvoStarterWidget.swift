@@ -7,53 +7,59 @@
 
 import WidgetKit
 import SwiftUI
+import ConvoStarterShared
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), emoji: "😀")
+        SimpleEntry(date: Date(), conversationText: "Start a conversation...")
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), emoji: "😀")
+        let entry = SimpleEntry(date: Date(), conversationText: "Start a conversation...")
         completion(entry)
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [SimpleEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, emoji: "😀")
-            entries.append(entry)
+        ConversationService.shared.fetchLatestConversationStarter { result in
+            let conversationText: String
+            switch result {
+            case .success(let conversationStarter):
+                conversationText = conversationStarter.text
+            case .failure(_):
+                conversationText = "Failed to load conversation starter"
+            }
+            
+            let currentDate = Date()
+            let entry = SimpleEntry(date: currentDate, conversationText: conversationText)
+            
+            // Refresh every 30 minutes
+            let refreshDate = Calendar.current.date(byAdding: .minute, value: 30, to: currentDate) ?? currentDate
+            let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
+            completion(timeline)
         }
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        completion(timeline)
     }
-
-//    func relevances() async -> WidgetRelevances<Void> {
-//        // Generate a list containing the contexts this widget is relevant in.
-//    }
 }
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
-    let emoji: String
+    let conversationText: String
 }
 
 struct ConvoStarterWidgetEntryView : View {
     var entry: Provider.Entry
 
     var body: some View {
-        VStack {
-            Text("Time:")
-            Text(entry.date, style: .time)
-
-            Text("Emoji:")
-            Text(entry.emoji)
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Conversation Starter")
+                .font(.caption)
+                .foregroundColor(.secondary)
+            
+            Text(entry.conversationText)
+                .font(.body)
+                .multilineTextAlignment(.leading)
+                .lineLimit(nil)
         }
+        .padding()
     }
 }
 
@@ -71,14 +77,14 @@ struct ConvoStarterWidget: Widget {
                     .background()
             }
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("Conversation Starter")
+        .description("Get the latest conversation starter to break the ice.")
     }
 }
 
 #Preview(as: .systemSmall) {
     ConvoStarterWidget()
 } timeline: {
-    SimpleEntry(date: .now, emoji: "😀")
-    SimpleEntry(date: .now, emoji: "🤩")
+    SimpleEntry(date: .now, conversationText: "What's the most interesting thing you've learned recently?")
+    SimpleEntry(date: .now, conversationText: "If you could have dinner with anyone, living or dead, who would it be and why?")
 }

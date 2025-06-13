@@ -143,6 +143,7 @@
 			);
 			name = ConvoStarter;
 			packageProductDependencies = (
+				A15A2B2C2DFBA83F00391CD1 /* ConvoStarterShared */,
 			);
 			productName = ConvoStarter;
 			productReference = A15A2AB22DFBA18500391CD1 /* ConvoStarter.app */;
@@ -165,6 +166,7 @@
 			);
 			name = ConvoStarterWidgetExtension;
 			packageProductDependencies = (
+				A15A2B2D2DFBA83F00391CD1 /* ConvoStarterShared */,
 			);
 			productName = ConvoStarterWidgetExtension;
 			productReference = A15A2B182DFBA51400391CD1 /* ConvoStarterWidgetExtension.appex */;
@@ -197,6 +199,9 @@
 			);
 			mainGroup = A15A2AA92DFBA18500391CD1;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				A15A2B2B2DFBA83F00391CD1 /* XCLocalSwiftPackageReference "ConvoStarterShared" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = A15A2AB32DFBA18500391CD1 /* Products */;
 			projectDirPath = "";
@@ -513,6 +518,26 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		A15A2B2B2DFBA83F00391CD1 /* XCLocalSwiftPackageReference "ConvoStarterShared" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ConvoStarterShared;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A15A2B2C2DFBA83F00391CD1 /* ConvoStarterShared */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A15A2B2B2DFBA83F00391CD1 /* XCLocalSwiftPackageReference "ConvoStarterShared" */;
+			productName = ConvoStarterShared;
+		};
+		A15A2B2D2DFBA83F00391CD1 /* ConvoStarterShared */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A15A2B2B2DFBA83F00391CD1 /* XCLocalSwiftPackageReference "ConvoStarterShared" */;
+			productName = ConvoStarterShared;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A15A2AAA2DFBA18500391CD1 /* Project object */;
 }

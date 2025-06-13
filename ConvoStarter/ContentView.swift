@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ConvoStarterShared
 
 struct ContentView: View {
     @State private var conversationText = "Loading..."
@@ -23,18 +24,16 @@ struct ContentView: View {
     }
     
     func fetchConversationStarter() {
-        guard let url = URL(string: "https://convo-starters.drevan.me/api/conversation-starters/latest") else { return }
-        
-        URLSession.shared.dataTask(with: url) { data, _, _ in
-            guard let data = data else { return }
-            
-            if let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-               let text = json["text"] as? String {
-                DispatchQueue.main.async {
-                    conversationText = text
+        ConversationService.shared.fetchLatestConversationStarter { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let conversationStarter):
+                    conversationText = conversationStarter.text
+                case .failure(_):
+                    conversationText = "Failed to load conversation starter"
                 }
             }
-        }.resume()
+        }
     }
 }
 

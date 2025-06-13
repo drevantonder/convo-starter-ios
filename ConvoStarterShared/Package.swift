@@ -4,5 +4,20 @@
 import PackageDescription
 
 let package = Package(
-    name: "ConvoStarterShared"
+    name: "ConvoStarterShared",
+    platforms: [
+        .iOS(.v15)
+    ],
+    products: [
+        .library(
+            name: "ConvoStarterShared",
+            targets: ["ConvoStarterShared"]
+        ),
+    ],
+    targets: [
+        .target(
+            name: "ConvoStarterShared",
+            dependencies: []
+        ),
+    ]
 )
