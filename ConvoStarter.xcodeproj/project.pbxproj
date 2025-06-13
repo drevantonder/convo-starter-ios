@@ -42,6 +42,7 @@
 		A15A2ACE2DFBA3D600391CD1 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		A15A2AE72DFBA46900391CD1 /* ConvoStarterShared */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ConvoStarterShared; sourceTree = "<group>"; };
 		A15A2B182DFBA51400391CD1 /* ConvoStarterWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ConvoStarterWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		A15A2B2A2DFBA66200391CD1 /* CLAUDE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CLAUDE.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -93,6 +94,7 @@
 		A15A2AA92DFBA18500391CD1 = {
 			isa = PBXGroup;
 			children = (
+				A15A2B2A2DFBA66200391CD1 /* CLAUDE.md */,
 				A15A2AE72DFBA46900391CD1 /* ConvoStarterShared */,
 				A15A2AB42DFBA18500391CD1 /* ConvoStarter */,
 				A15A2B1B2DFBA51400391CD1 /* ConvoStarterWidget */,
