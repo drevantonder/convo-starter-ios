@@ -10,12 +10,25 @@ import ConvoStarterShared
 
 struct ContentView: View {
     @State private var conversationText = "Loading..."
+    @State private var isGenerating = false
     
     var body: some View {
-        VStack {
+        VStack(spacing: 20) {
             Text(conversationText)
                 .multilineTextAlignment(.center)
                 .padding()
+            
+            Button(action: {
+                generateNewConversationStarter()
+            }) {
+                Text(isGenerating ? "Generating..." : "Generate")
+                    .foregroundColor(.white)
+                    .padding(.horizontal, 24)
+                    .padding(.vertical, 12)
+                    .background(isGenerating ? Color.gray : Color.blue)
+                    .cornerRadius(8)
+            }
+            .disabled(isGenerating)
         }
         .padding()
         .onAppear {
@@ -31,6 +44,23 @@ struct ContentView: View {
                     conversationText = conversationStarter.text
                 case .failure(_):
                     conversationText = "Failed to load conversation starter"
+                }
+            }
+        }
+    }
+    
+    func generateNewConversationStarter() {
+        isGenerating = true
+        
+        ConversationService.shared.generateNewConversationStarter { result in
+            DispatchQueue.main.async {
+                isGenerating = false
+                
+                switch result {
+                case .success(let conversationStarter):
+                    conversationText = conversationStarter.text
+                case .failure(_):
+                    conversationText = "Failed to generate conversation starter"
                 }
             }
         }
