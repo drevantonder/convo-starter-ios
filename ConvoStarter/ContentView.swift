@@ -7,6 +7,7 @@
 
 import SwiftUI
 import ConvoStarterShared
+import WidgetKit
 
 struct ContentView: View {
     @State private var conversationText = "Loading..."
@@ -59,6 +60,8 @@ struct ContentView: View {
                 switch result {
                 case .success(let conversationStarter):
                     conversationText = conversationStarter.text
+                    // Refresh the widget timeline to show the new conversation starter
+                    WidgetCenter.shared.reloadAllTimelines()
                 case .failure(_):
                     conversationText = "Failed to generate conversation starter"
                 }

@@ -32,9 +32,11 @@ struct Provider: TimelineProvider {
             let currentDate = Date()
             let entry = SimpleEntry(date: currentDate, conversationText: conversationText)
             
-            // Refresh every 30 minutes
-            let refreshDate = Calendar.current.date(byAdding: .minute, value: 30, to: currentDate) ?? currentDate
-            let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
+            // Refresh every 15 minutes instead of 30 for better sync
+            let refreshDate = Calendar.current.date(byAdding: .minute, value: 15, to: currentDate) ?? currentDate
+            
+            // Use .atEnd policy which allows the system to reload more frequently when needed
+            let timeline = Timeline(entries: [entry], policy: .atEnd)
             completion(timeline)
         }
     }
