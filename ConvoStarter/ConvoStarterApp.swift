@@ -7,9 +7,16 @@
 
 import SwiftUI
 import WidgetKit
+import PostHog
 
 @main
 struct ConvoStarterApp: App {
+    init() {
+        let POSTHOG_API_KEY = "phc_4jCoDMn5iuwXshspqHHIyObV6KHdFzxAueMLuoZ5fPX"
+        let config = PostHogConfig(apiKey: POSTHOG_API_KEY)
+        PostHogSDK.shared.setup(config)
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()

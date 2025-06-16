@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A1081F7F2E000B9000103337 /* PostHog in Frameworks */ = {isa = PBXBuildFile; productRef = A1081F7E2E000B9000103337 /* PostHog */; };
 		A15A2B192DFBA51400391CD1 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A15A2ACC2DFBA3D600391CD1 /* WidgetKit.framework */; };
 		A15A2B1A2DFBA51400391CD1 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A15A2ACE2DFBA3D600391CD1 /* SwiftUI.framework */; };
 		A15A2B252DFBA51500391CD1 /* ConvoStarterWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A15A2B182DFBA51400391CD1 /* ConvoStarterWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -48,6 +49,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		A1081F852E000FAB00103337 /* Exceptions for "ConvoStarter" folder in "ConvoStarter" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = A15A2AB12DFBA18500391CD1 /* ConvoStarter */;
+		};
 		A15A2B262DFBA51500391CD1 /* Exceptions for "ConvoStarterWidget" folder in "ConvoStarterWidgetExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -60,6 +68,9 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		A15A2AB42DFBA18500391CD1 /* ConvoStarter */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				A1081F852E000FAB00103337 /* Exceptions for "ConvoStarter" folder in "ConvoStarter" target */,
+			);
 			path = ConvoStarter;
 			sourceTree = "<group>";
 		};
@@ -79,6 +90,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A15A2B592DFBA94500391CD1 /* ConvoStarterShared in Frameworks */,
+				A1081F7F2E000B9000103337 /* PostHog in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,6 +160,7 @@
 			name = ConvoStarter;
 			packageProductDependencies = (
 				A15A2B2C2DFBA83F00391CD1 /* ConvoStarterShared */,
+				A1081F7E2E000B9000103337 /* PostHog */,
 			);
 			productName = ConvoStarter;
 			productReference = A15A2AB22DFBA18500391CD1 /* ConvoStarter.app */;
@@ -205,6 +218,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				A15A2B2B2DFBA83F00391CD1 /* XCLocalSwiftPackageReference "ConvoStarterShared" */,
+				A1081F7D2E000B9000103337 /* XCRemoteSwiftPackageReference "posthog-ios" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = A15A2AB32DFBA18500391CD1 /* Products */;
@@ -392,6 +406,7 @@
 				DEVELOPMENT_TEAM = X96JC3HCV7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ConvoStarter/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Convo Starter";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -423,6 +438,7 @@
 				DEVELOPMENT_TEAM = X96JC3HCV7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ConvoStarter/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Convo Starter";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -536,7 +552,23 @@
 		};
 /* End XCLocalSwiftPackageReference section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		A1081F7D2E000B9000103337 /* XCRemoteSwiftPackageReference "posthog-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/PostHog/posthog-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.26.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
+		A1081F7E2E000B9000103337 /* PostHog */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A1081F7D2E000B9000103337 /* XCRemoteSwiftPackageReference "posthog-ios" */;
+			productName = PostHog;
+		};
 		A15A2B2C2DFBA83F00391CD1 /* ConvoStarterShared */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A15A2B2B2DFBA83F00391CD1 /* XCLocalSwiftPackageReference "ConvoStarterShared" */;
