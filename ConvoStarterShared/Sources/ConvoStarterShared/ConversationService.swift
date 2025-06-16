@@ -11,8 +11,8 @@ public struct ConversationStarter {
 public class ConversationService: @unchecked Sendable {
     public static let shared = ConversationService()
     
-    private let apiURL = "https://convo-starters.drevan.me/api/conversation-starters/latest"
-    private let generateURL = "https://convo-starters.drevan.me/api/conversation-starters/generate-and-save"
+    private let apiURL = "https://convo-starter.drevan.me/api/conversation-starters/latest"
+    private let generateURL = "https://convo-starter.drevan.me/api/conversation-starters/generate-and-save"
     
     private init() {}
     
